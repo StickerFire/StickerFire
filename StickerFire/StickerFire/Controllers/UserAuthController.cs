@@ -62,7 +62,7 @@ namespace StickerFire.Controllers
         //External Registration -- OAuth
         public IActionResult ExternalLogin(string provider, string returnURL = null)
         {
-            var redirectURL = Url.Action(nameof(ExternalLoginCallback), "UserAuth", new { returnURL });
+            var redirectURL = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnURL });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectURL);
             return Challenge(properties, provider);
         }
