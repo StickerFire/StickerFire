@@ -62,13 +62,13 @@ namespace StickerFire.Controllers
         //External Registration -- OAuth
         public IActionResult ExternalLogin(string provider, string returnURL = null)
         {
-            var redirectURL = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnURL });
+            var redirectURL = Url.Action(nameof(ExternalLoginCallback), "UserAuth", new { returnURL });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectURL);
             return Challenge(properties, provider);
         }
 
 
-        //Unused OAUTH Action: TODO
+        //External Login Callback, this redirects to home page if OAuth is succesful
         public async Task<IActionResult> ExternalLoginCallback(string returnURL = null, string remoteError = null)
         {
             if (remoteError != null)
