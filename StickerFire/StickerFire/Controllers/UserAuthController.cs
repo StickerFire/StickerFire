@@ -86,7 +86,7 @@ namespace StickerFire.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ExternalLogin", "UserAuth");
             }
 
             if (result.IsLockedOut)
