@@ -68,7 +68,7 @@ namespace StickerFire.Controllers
         }
 
 
-        //External Login Callback, this redirects to home page if OAuth is succesful
+        //External Login Callback, this redirects to home page if OAuth is succesful or to external login if 
         public async Task<IActionResult> ExternalLoginCallback(string returnURL = null, string remoteError = null)
         {
             if (remoteError != null)
@@ -83,7 +83,7 @@ namespace StickerFire.Controllers
                 return RedirectToAction(nameof(Login));
             }
 
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: true, bypassTwoFactor: true);
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
@@ -98,6 +98,38 @@ namespace StickerFire.Controllers
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 return View("ExternalLogin", new ExternalLoginModel { Email = email });
             }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginModel model, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+                // Get the information about the user from the external login provider
+                var info = await _signInManager.GetExternalLoginInfoAsync();
+                if (info == null)
+                {
+                    throw new ApplicationException("Error loading external login information during confirmation.");
+                }
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user);
+                if (result.Succeeded)
+                {
+                    result = await _userManager.AddLoginAsync(user, info);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                return View();
+            }
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View(nameof(ExternalLogin), model);
         }
 
 
