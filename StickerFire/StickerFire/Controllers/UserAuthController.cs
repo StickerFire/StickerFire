@@ -62,7 +62,7 @@ namespace StickerFire.Controllers
         //External Registration -- OAuth
         public IActionResult ExternalLogin(string provider, string returnURL = null)
         {
-            var redirectURL = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnURL });
+            var redirectURL = Url.Action(nameof(ExternalLoginCallback), "UserAuth", new { returnURL });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectURL);
             return Challenge(properties, provider);
         }
@@ -83,10 +83,10 @@ namespace StickerFire.Controllers
                 return RedirectToAction(nameof(Login));
             }
 
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: true, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                return RedirectToAction("ExternalLogin", "UserAuth");
+                return RedirectToAction("Index", "Home");
             }
 
             if (result.IsLockedOut)
