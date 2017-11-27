@@ -35,8 +35,21 @@ Good luck!
 
 ## Technologies
   - C#
-  - ASP.NET Core 
-  - (to be continued)
+  - CSHTML
+  - CSS
+  - Adobe Illustrator (Logos & Asset manipulation)
+  - Visual Studio 2017 (IDE)
+  - Visual Studio Team Services (Project Management)
+  - Git/GitHub (Version Control)
+  - ASP.NET Core 2.0
+  - .Net MVC Framework
+  - .NET Identity framework for user management/roles.
+  - Hosted/Deployed on Microsoft Azure.
+  - Images uploaded/stored using Azure blob storage.
+  - Bootstrap (Front-End/Styling)
+  - JQuery (Front-End)
+  - Sticker styling achieved with CSS filters.
+  - XUnit testing for unit tests.
 
 ## Developers
 - [Austin Cohrs](https://github.com/ThugLifeAquatic)
@@ -44,6 +57,6 @@ Good luck!
 - [Erik Plyushko](https://github.com/drkrieger1)
 - [Greggory Dukes](https://github.com/Kcils360)
 
-Check out our Githubs and feel free to contact us!
+Check out our Github profiles and feel free to contact us with any questions.
 
 
