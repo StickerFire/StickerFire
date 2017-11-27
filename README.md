@@ -55,7 +55,7 @@ Good luck!
 - [Austin Cohrs](https://github.com/ThugLifeAquatic)
 - [Duane Rush](https://github.com/desertduane)
 - [Erik Plyushko](https://github.com/drkrieger1)
-- [Greggory Dukes](https://github.com/Kcils360)
+- [Gregory Dukes](https://github.com/Kcils360)
 
 Check out our Github profiles and feel free to contact us with any questions.
 
