@@ -5,6 +5,7 @@
 
 .table {
     background-color: #e9eaec;
+    margin-bottom: 100px;
 }
 
 hr {
@@ -157,7 +158,6 @@ button {
     clear:both;
     margin-bottom: 60px;
 }
-
 #footer{
     position:relative;
     margin-top: 40px;
